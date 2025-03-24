@@ -2,26 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photos Page</title>
+    <title>Photos</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Load Google API Client -->
+    <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
-    <!-- Photos Grid -->
-    <div id="photos-grid"></div>
-
-    <!-- Photo Modal -->
-    <div id="photo-modal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modal-image">
-    </div>
-
-    <!-- Form to Upload Photos -->
+    <h1>Photos</h1>
     <form id="add-photo-form">
-        <input type="file" id="photo-file" accept="image/*" required>
+        <input type="file" id="photo-file" accept="image/*">
         <button type="submit">Add Photo</button>
     </form>
-
+    <div id="photos-grid"></div>
+    <!-- Modal for viewing photos -->
+    <div id="photo-modal" class="modal">
+        <span class="close">×</span>
+        <img id="modal-image" class="modal-content">
+    </div>
+    <script src="auth.js"></script>
     <script src="photos.js"></script>
 </body>
 </html>

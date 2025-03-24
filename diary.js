@@ -1,29 +1,112 @@
-// Load diary entries from localStorage
-let diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || {};
+let diaryEntries = {};
 
-// Get DOM elements
+// DOM elements
 const dateInput = document.getElementById('diary-date');
 const textArea = document.getElementById('diary-text');
 const saveButton = document.getElementById('save-entry');
 const entryDatesList = document.getElementById('entry-dates');
 
-// Load the entry for the selected date
-function loadEntry() {
-    const selectedDate = dateInput.value;
-    if (diaryEntries[selectedDate]) {
-        textArea.value = diaryEntries[selectedDate];
-    } else {
-        textArea.value = '';
-    }
+// Initialize Google API client and load entries
+gapi.load('client', function() {
+    gapi.client.setToken({ access_token: localStorage.getItem('accessToken') });
+    gapi.client.load('drive', 'v3', () => {
+        initDiary();
+    });
+});
+
+// Get or create app folder
+function getAppFolder() {
+    return new Promise((resolve) => {
+        gapi.client.drive.files.list({
+            q: "mimeType='application/vnd.google-apps.folder' name='VajraMeenuApp'",
+            fields: 'files(id)'
+        }).then(response => {
+            const folders = response.result.files;
+            if (folders && folders.length > 0) {
+                resolve(folders[0].id);
+            } else {
+                gapi.client.drive.files.create({
+                    resource: { name: 'VajraMeenuApp', mimeType: 'application/vnd.google-apps.folder' },
+                    fields: 'id'
+                }).then(response => resolve(response.result.id));
+            }
+        });
+    });
 }
 
-// Display the list of dates with entries
+// Get or create diary.json
+function getDiaryFile() {
+    return getAppFolder().then(appFolderId => {
+        return new Promise((resolve) => {
+            gapi.client.drive.files.list({
+                q: `'${appFolderId}' in parents name='diary.json'`,
+                fields: 'files(id)'
+            }).then(response => {
+                const files = response.result.files;
+                if (files && files.length > 0) {
+                    resolve(files[0].id);
+                } else {
+                    const metadata = { name: 'diary.json', mimeType: 'application/json', parents: [appFolderId] };
+                    const content = JSON.stringify({});
+                    const form = new FormData();
+                    form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+                    form.append('file', new Blob([content], { type: 'application/json' }));
+                    fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+                        method: 'POST',
+                        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') },
+                        body: form
+                    }).then(response => response.json()).then(file => resolve(file.id));
+                }
+            });
+        });
+    });
+}
+
+// Load diary entries
+function loadDiaryEntries() {
+    return getDiaryFile().then(fileId => {
+        return gapi.client.drive.files.get({
+            fileId: fileId,
+            alt: 'media'
+        }).then(response => JSON.parse(response.body));
+    });
+}
+
+// Save diary entries
+function saveDiaryEntries(entries) {
+    return getDiaryFile().then(fileId => {
+        const content = JSON.stringify(entries);
+        return fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                'Content-Type': 'application/json'
+            },
+            body: content
+        });
+    });
+}
+
+// Initialize diary
+async function initDiary() {
+    diaryEntries = (await loadDiaryEntries()) || {};
+    displayEntryDates();
+    loadEntry();
+}
+
+// Load entry for selected date
+function loadEntry() {
+    const selectedDate = dateInput.value;
+    textArea.value = diaryEntries[selectedDate] || '';
+}
+
+// Display dates with entries
 function displayEntryDates() {
     entryDatesList.innerHTML = '';
     Object.keys(diaryEntries).sort().forEach(date => {
         const listItem = document.createElement('li');
         listItem.textContent = date;
-        listItem.addEventListener('click', function() {
+        listItem.addEventListener('click', () => {
             dateInput.value = date;
             loadEntry();
         });
@@ -31,11 +114,9 @@ function displayEntryDates() {
     });
 }
 
-// Event listener for date changes
+// Event listeners
 dateInput.addEventListener('change', loadEntry);
-
-// Event listener for save button
-saveButton.addEventListener('click', function() {
+saveButton.addEventListener('click', async () => {
     const selectedDate = dateInput.value;
     if (!selectedDate) {
         alert('Please select a date.');
@@ -47,13 +128,10 @@ saveButton.addEventListener('click', function() {
     } else {
         delete diaryEntries[selectedDate];
     }
-    localStorage.setItem('diaryEntries', JSON.stringify(diaryEntries));
-    displayEntryDates(); // Update the list of dates
+    await saveDiaryEntries(diaryEntries);
+    displayEntryDates();
     alert('Entry saved!');
 });
 
-// Initialize: Set today's date and load any existing entry
-const today = new Date().toISOString().split('T')[0];
-dateInput.value = today;
-loadEntry();
-displayEntryDates();
+// Set today's date
+dateInput.value = new Date().toISOString().split('T')[0];

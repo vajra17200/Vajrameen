@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Back Vajra / Meenu</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Load Google Platform Library -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="1062073700635-4pku1tfck0qgtvje2e6oh1juf2pd1f36.apps.googleusercontent.com">
 </head>
 <body>
     <div class="login-container">
         <h1>Welcome Back Vajra / Meenu</h1>
-        <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" required>
-            <label for="password">Password:</label>
-            <input type="text" id="password" required>
-            <button type="submit">Login</button>
-        </form>
+        <!-- Google Sign-In Button -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
     <script src="login.js"></script>
 </body>

@@ -18,19 +18,25 @@
     </div>
     <div id="settings-modal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close">×</span>
             <h2>Settings</h2>
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select">
+                <option value="default">Default Romance</option>
+                <option value="sunset">Romantic Sunset</option>
+                <option value="starry">Starry Night</option>
+            </select>
             <label for="background-url">Background URL:</label>
             <input type="url" id="background-url">
             <button id="set-background">Set Background</button>
             <label for="font-size">Font Size:</label>
-            <input type="number" id="font-size" min="10" max="30" value="50">
+            <input type="number" id="font-size" min="10" max="30" value="18">
             <label for="font-family">Font Family:</label>
             <select id="font-family">
+                <option value="Georgia">Georgia</option>
                 <option value="Arial">Arial</option>
                 <option value="Times New Roman">Times New Roman</option>
                 <option value="Courier New">Courier New</option>
-                <option value="elegant serif font-family">elegant serif font-family</option> 
             </select>
             <button id="apply-styles">Apply Styles</button>
         </div>

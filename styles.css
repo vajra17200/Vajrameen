@@ -8,28 +8,60 @@
     box-sizing: border-box;
 }
 
+/* Theme Variables */
+:root {
+    --primary-color: #ff6f91;
+    --secondary-color: #ff4d6d;
+    --gradient-start: #ffafbd;
+    --gradient-end: #ffdde1;
+    --text-color: #3b2f2f;
+    --card-bg: rgba(255, 111, 145, 0.95);
+    --font-family: 'Georgia', serif;
+    --font-size: 18px;
+}
+
+/* Theme: Romantic Sunset */
+.theme-sunset {
+    --primary-color: #ff6f61;
+    --secondary-color: #ff4500;
+    --gradient-start: #ffb07c;
+    --gradient-end: #ff6347;
+    --text-color: #2f1b1b;
+    --card-bg: rgba(255, 99, 71, 0.95);
+}
+
+/* Theme: Starry Night */
+.theme-starry {
+    --primary-color: #4682b4;
+    --secondary-color: #191970;
+    --gradient-start: #191970;
+    --gradient-end: #87ceeb;
+    --text-color: #f0f8ff;
+    --card-bg: rgba(70, 130, 180, 0.95);
+}
+
 /* Body with Dreamy Gradient */
 body {
-    background: linear-gradient(135deg, #ffafbd, #ffc3a0, #ffb6c1, #ffdde1);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     background-size: 400% 400%;
     animation: softGradient 15s ease infinite;
-    color: #3b2f2f;
-    font-family: 'Georgia', serif;
-    font-size: 18px;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
     line-height: 1.8;
     overflow-x: hidden;
     position: relative;
     padding-bottom: 80px; /* Space for fixed elements */
 }
 
-/* New Soft Gradient Animation */
+/* Soft Gradient Animation */
 @keyframes softGradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* New Subtle Heart Pulse Animation (Replaces Floating Hearts) */
+/* Subtle Heart Pulse Animation */
 body::before {
     content: '';
     position: absolute;
@@ -82,13 +114,13 @@ body::before {
     z-index: -1;
 }
 
-/* Login Photo with New Subtle Glow Animation */
+/* Login Photo with Subtle Glow Animation */
 .login-photo {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid #ff6f91;
+    border: 4px solid var(--primary-color);
     margin-bottom: 25px;
     animation: photoGlow 3s ease infinite;
     box-shadow: 0 5px 15px rgba(255, 111, 145, 0.5);
@@ -115,9 +147,9 @@ body::before {
 }
 
 .login-form h1 {
-    font-family: 'Dancing+Script', cursive;
+    font-family: 'Dancing Script', cursive;
     font-size: 2.5em;
-    color: #e13d63;
+    color: var(--primary-color);
     text-align: center;
     margin-bottom: 20px;
     text-shadow: 1px 1px 3px rgba(255, 111, 145, 0.4);
@@ -125,36 +157,36 @@ body::before {
 }
 
 @keyframes softColor {
-    0%, 100% { color: #e13d63; }
-    50% { color: #ff6f91; }
+    0%, 100% { color: var(--primary-color); }
+    50% { color: var(--secondary-color); }
 }
 
 .login-form input {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 2px solid #ff6f91;
+    border: 2px solid var(--primary-color);
     border-radius: 8px;
     font-size: 1em;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     transition: all 0.3s ease;
 }
 
 .login-form input:focus {
-    border-color: #ff4d6d;
+    border-color: var(--secondary-color);
     box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
     outline: none;
 }
 
 .login-form button {
-    width: 70%;
+    width: 100%;
     padding: 12px;
-    background: #ff6f91;
+    background: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 8px;
     font-size: 1.1em;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -180,7 +212,7 @@ body::before {
 }
 
 .login-form button:hover {
-    background: #ff4d6d;
+    background: var(--secondary-color);
     transform: scale(1.05);
 }
 
@@ -189,6 +221,12 @@ body::before {
     padding: 60px 20px;
     text-align: center;
     position: relative;
+    animation: pageFade 1s ease-in-out;
+}
+
+@keyframes pageFade {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* Headings with Romantic Font and Animation */
@@ -196,7 +234,7 @@ h1 {
     font-family: 'Dancing Script', cursive;
     font-size: 3.8em;
     margin-bottom: 30px;
-    color: #e13d63;
+    color: var(--primary-color);
     text-shadow: 2px 2px 6px rgba(255, 111, 145, 0.4);
     animation: softColor 4s infinite;
 }
@@ -210,9 +248,9 @@ h1 {
     background: rgba(255, 255, 255, 0.85);
     border-radius: 15px;
     text-decoration: none;
-    color: #ff6f91;
+    color: var(--primary-color);
     font-size: 1.3em;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.4s ease;
     max-width: 500px;
@@ -224,7 +262,7 @@ h1 {
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: #ff6f91;
+    color: var(--primary-color);
     font-size: 1.2em;
     opacity: 0;
     transition: opacity 0.3s, left 0.3s;
@@ -238,7 +276,7 @@ h1 {
 .links a:hover {
     transform: translateY(-8px) scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 111, 145, 0.9);
+    background: var(--primary-color);
     color: #fff;
 }
 
@@ -248,18 +286,18 @@ h1 {
     bottom: 30px;
     right: 30px;
     padding: 15px 25px;
-    background: #ff6f91;
+    background: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
 
 #settings-btn:hover {
-    background: #ff4d6d;
+    background: var(--secondary-color);
     transform: rotate(360deg) scale(1.1);
 }
 
@@ -296,7 +334,7 @@ h1 {
 .modal-content .close {
     float: right;
     font-size: 2em;
-    color: #ff6f91;
+    color: var(--primary-color);
     cursor: pointer;
     transition: transform 0.3s;
 }
@@ -308,44 +346,44 @@ h1 {
 .modal-content label {
     display: block;
     margin: 15px 0 5px;
-    color: #ff6f91;
+    color: var(--primary-color);
     font-weight: bold;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
 }
 
 .modal-content input, .modal-content select {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 2px solid #ff6f91;
+    border: 2px solid var(--primary-color);
     border-radius: 8px;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     transition: border-color 0.3s;
 }
 
 .modal-content input:focus, .modal-content select:focus {
-    border-color: #ff4d6d;
+    border-color: var(--secondary-color);
     outline: none;
 }
 
 .modal-content button {
     padding: 12px;
-    background: #ff6f91;
+    background: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     transition: background 0.3s;
 }
 
 .modal-content button:hover {
-    background: #ff4d6d;
+    background: var(--secondary-color);
 }
 
 /* Card Styling */
 .card {
-    background: rgba(255, 111, 145, 0.95);
+    background: var(--card-bg);
     border-radius: 25px;
     padding: 25px;
     margin: 25px auto;
@@ -358,7 +396,7 @@ h1 {
 
 .card p, .card h2, .card h3 {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
 }
 
 .card h2, .card h3 {
@@ -377,7 +415,7 @@ h1 {
     right: 15px;
     width: 25px;
     height: 25px;
-    background: #ff4d6d;
+    background: var(--secondary-color);
     transform: rotate(45deg);
     animation: softBeat 1.5s infinite;
 }
@@ -387,7 +425,7 @@ h1 {
     position: absolute;
     width: 25px;
     height: 25px;
-    background: #ff4d6d;
+    background: var(--secondary-color);
     border-radius: 50%;
 }
 
@@ -450,40 +488,40 @@ form {
 form label {
     display: block;
     margin: 15px 0 5px;
-    color: #ff6f91;
+    color: var(--primary-color);
     font-weight: bold;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
 }
 
 form input, form textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 2px solid #ff6f91;
+    border: 2px solid var(--primary-color);
     border-radius: 8px;
     font-size: 1em;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     transition: border-color 0.3s;
 }
 
 form input:focus, form textarea:focus {
-    border-color: #ff4d6d;
+    border-color: var(--secondary-color);
     outline: none;
 }
 
 form button {
     padding: 12px 25px;
-    background: #ff6f91;
+    background: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     transition: background 0.3s, transform 0.3s;
 }
 
 form button:hover {
-    background: #ff4d6d;
+    background: var(--secondary-color);
     transform: scale(1.05);
 }
 
@@ -503,16 +541,16 @@ form button:hover {
     margin-bottom: 15px;
     padding: 10px;
     border-radius: 8px;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
 }
 
 #diary-text {
     width: 100%;
     height: 350px;
     padding: 15px;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     font-size: 1.1em;
-    border: 2px solid #ff6f91;
+    border: 2px solid var(--primary-color);
     border-radius: 10px;
     resize: vertical;
     background: rgba(255, 255, 255, 0.9);
@@ -521,17 +559,17 @@ form button:hover {
 #save-entry {
     margin-top: 15px;
     padding: 10px 20px;
-    background: #ff6f91;
+    background: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     transition: background 0.3s;
 }
 
 #save-entry:hover {
-    background: #ff4d6d;
+    background: var(--secondary-color);
 }
 
 .entry-dates {
@@ -549,46 +587,50 @@ form button:hover {
 #entry-dates li {
     padding: 10px;
     cursor: pointer;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-family);
     transition: background 0.3s, transform 0.3s;
 }
 
 #entry-dates li:hover {
-    background: #ff6f91;
+    background: var(--primary-color);
     color: #fff;
     transform: translateX(5px);
 }
 
+/* Notification Styling */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease, slideOut 0.5s ease 2.5s forwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
 /* Media Queries for Fine-Tuning */
 @media (max-width: 768px) {
-    /* Adjust login photo size */
-    .login-photo {
-        width: 100px;
-        height: 100px;
-    }
-
-    /* Reduce padding on links */
-    .links a {
-        padding: 15px 15px 15px 35px;
-    }
-
-    /* Adjust settings button */
-    #settings-btn {
-        padding: 10px 20px;
-    }
+    h1 { font-size: 2.5em; }
+    .diary-container { flex-direction: column; }
+    .entry-dates { width: 100%; }
+    #diary-text { height: 300px; font-size: 1.2em; }
 }
 
 @media (max-width: 480px) {
-    /* Further adjust login photo */
-    .login-photo {
-        width: 80px;
-        height: 80px;
-    }
-
-    /* Adjust settings button position */
-    #settings-btn {
-        bottom: 20px;
-        right: 20px;
-        padding: 8px 15px;
-    }
+    h1 { font-size: 2em; }
+    .login-container { padding: 20px; max-width: 100%; }
+    .login-form { padding: 20px; }
+    #photos-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }

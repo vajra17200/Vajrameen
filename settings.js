@@ -19,10 +19,13 @@ window.onclick = function(event) {
 document.getElementById('apply-styles').addEventListener('click', function() {
     const fontSize = document.getElementById('font-size').value + 'px';
     const fontFamily = document.getElementById('font-family').value;
+    const theme = document.getElementById('theme-select').value;
     document.body.style.fontSize = fontSize;
     document.body.style.fontFamily = fontFamily;
+    document.body.className = `theme-${theme}`;
     localStorage.setItem('fontSize', fontSize);
     localStorage.setItem('fontFamily', fontFamily);
+    localStorage.setItem('theme', theme);
 });
 
 // Set Background
@@ -40,10 +43,21 @@ window.onload = function() {
     const savedFontSize = localStorage.getItem('fontSize');
     const savedFontFamily = localStorage.getItem('fontFamily');
     const savedBackground = localStorage.getItem('background');
+    const savedTheme = localStorage.getItem('theme');
     if (savedFontSize) document.body.style.fontSize = savedFontSize;
     if (savedFontFamily) document.body.style.fontFamily = savedFontFamily;
     if (savedBackground) {
         document.body.style.backgroundImage = `url(${savedBackground})`;
         document.body.style.backgroundSize = 'cover';
     }
+    if (savedTheme) document.body.className = `theme-${savedTheme}`;
 };
+
+// Notification Function
+function showNotification(message) {
+    const notif = document.createElement('div');
+    notif.className = 'notification';
+    notif.textContent = message;
+    document.body.appendChild(notif);
+    setTimeout(() => notif.remove(), 3000);
+}
