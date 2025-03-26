@@ -1,0 +1,594 @@
+/* Import Google Font for Romantic Typography */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+/* General Reset and Base Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body with Dreamy Gradient */
+body {
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0, #ffb6c1, #ffdde1);
+    background-size: 400% 400%;
+    animation: softGradient 15s ease infinite;
+    color: #3b2f2f;
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 80px; /* Space for fixed elements */
+}
+
+/* New Soft Gradient Animation */
+@keyframes softGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* New Subtle Heart Pulse Animation (Replaces Floating Hearts) */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 111, 145, 0.2) 0%, rgba(255, 111, 145, 0) 70%);
+    background-size: 100% 100%;
+    animation: heartPulse 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+    animation: gentleFade 1.5s ease-in-out;
+}
+
+@keyframes gentleFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Background Overlay */
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+
+/* Login Photo with New Subtle Glow Animation */
+.login-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ff6f91;
+    margin-bottom: 25px;
+    animation: photoGlow 3s ease infinite;
+    box-shadow: 0 5px 15px rgba(255, 111, 145, 0.5);
+}
+
+@keyframes photoGlow {
+    0%, 100% { box-shadow: 0 5px 15px rgba(255, 111, 145, 0.5); }
+    50% { box-shadow: 0 5px 25px rgba(255, 111, 145, 0.8); }
+}
+
+/* Login Form */
+.login-form {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    animation: gentleSlide 0.8s ease;
+}
+
+@keyframes gentleSlide {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.login-form h1 {
+    font-family: 'Dancing+Script', cursive;
+    font-size: 2.5em;
+    color: #e13d63;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(255, 111, 145, 0.4);
+    animation: softColor 4s infinite;
+}
+
+@keyframes softColor {
+    0%, 100% { color: #e13d63; }
+    50% { color: #ff6f91; }
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ff6f91;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: #ff4d6d;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+    outline: none;
+}
+
+.login-form button {
+    width: 70%;
+    padding: 12px;
+    background: #ff6f91;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.login-form button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.login-form button:hover::after {
+    width: 200%;
+    height: 200%;
+}
+
+.login-form button:hover {
+    background: #ff4d6d;
+    transform: scale(1.05);
+}
+
+/* Main Pages Styling */
+.home-container, .memories-container, .photos-container, .diary-container {
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* Headings with Romantic Font and Animation */
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.8em;
+    margin-bottom: 30px;
+    color: #e13d63;
+    text-shadow: 2px 2px 6px rgba(255, 111, 145, 0.4);
+    animation: softColor 4s infinite;
+}
+
+/* Links with Heart Hover Effect */
+.links a {
+    position: relative;
+    display: block;
+    margin: 20px auto;
+    padding: 20px 20px 20px 40px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    text-decoration: none;
+    color: #ff6f91;
+    font-size: 1.3em;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    max-width: 500px;
+}
+
+.links a::before {
+    content: '♥';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff6f91;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: opacity 0.3s, left 0.3s;
+}
+
+.links a:hover::before {
+    opacity: 1;
+    left: 5px;
+}
+
+.links a:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 111, 145, 0.9);
+    color: #fff;
+}
+
+/* Settings Button */
+#settings-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 15px 25px;
+    background: #ff6f91;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+#settings-btn:hover {
+    background: #ff4d6d;
+    transform: rotate(360deg) scale(1.1);
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    animation: gentleFade 0.5s ease;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: gentlePop 0.4s ease;
+}
+
+@keyframes gentlePop {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content .close {
+    float: right;
+    font-size: 2em;
+    color: #ff6f91;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.modal-content .close:hover {
+    transform: rotate(90deg);
+}
+
+.modal-content label {
+    display: block;
+    margin: 15px 0 5px;
+    color: #ff6f91;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+}
+
+.modal-content input, .modal-content select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ff6f91;
+    border-radius: 8px;
+    font-family: 'Georgia', serif;
+    transition: border-color 0.3s;
+}
+
+.modal-content input:focus, .modal-content select:focus {
+    border-color: #ff4d6d;
+    outline: none;
+}
+
+.modal-content button {
+    padding: 12px;
+    background: #ff6f91;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    transition: background 0.3s;
+}
+
+.modal-content button:hover {
+    background: #ff4d6d;
+}
+
+/* Card Styling */
+.card {
+    background: rgba(255, 111, 145, 0.95);
+    border-radius: 25px;
+    padding: 25px;
+    margin: 25px auto;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    max-width: 700px;
+    position: relative;
+    animation: gentleSlide 0.6s ease;
+    transition: all 0.3s ease;
+}
+
+.card p, .card h2, .card h3 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-family: 'Georgia', serif;
+}
+
+.card h2, .card h3 {
+    font-family: 'Dancing Script', cursive;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Beating Heart Animation */
+.heart {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+    background: #ff4d6d;
+    transform: rotate(45deg);
+    animation: softBeat 1.5s infinite;
+}
+
+.heart::before, .heart::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #ff4d6d;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -12px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -12px;
+}
+
+@keyframes softBeat {
+    0%, 100% { transform: scale(1) rotate(45deg); }
+    50% { transform: scale(1.1) rotate(45deg); }
+}
+
+/* Photos Grid */
+#photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 30px;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.photo-card img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced Modal for Photos */
+.modal-content img {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Forms for Adding Content */
+form {
+    margin: 30px auto;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    animation: gentleFade 0.5s ease;
+}
+
+form label {
+    display: block;
+    margin: 15px 0 5px;
+    color: #ff6f91;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ff6f91;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Georgia', serif;
+    transition: border-color 0.3s;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #ff4d6d;
+    outline: none;
+}
+
+form button {
+    padding: 12px 25px;
+    background: #ff6f91;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    transition: background 0.3s, transform 0.3s;
+}
+
+form button:hover {
+    background: #ff4d6d;
+    transform: scale(1.05);
+}
+
+/* Diary Container */
+.diary-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 30px auto;
+    gap: 20px;
+}
+
+.diary-content {
+    flex: 1;
+}
+
+#diary-date {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Georgia', serif;
+}
+
+#diary-text {
+    width: 100%;
+    height: 350px;
+    padding: 15px;
+    font-family: 'Georgia', serif;
+    font-size: 1.1em;
+    border: 2px solid #ff6f91;
+    border-radius: 10px;
+    resize: vertical;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+#save-entry {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ff6f91;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    transition: background 0.3s;
+}
+
+#save-entry:hover {
+    background: #ff4d6d;
+}
+
+.entry-dates {
+    width: 250px;
+}
+
+#entry-dates {
+    list-style: none;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#entry-dates li {
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    transition: background 0.3s, transform 0.3s;
+}
+
+#entry-dates li:hover {
+    background: #ff6f91;
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Media Queries for Fine-Tuning */
+@media (max-width: 768px) {
+    /* Adjust login photo size */
+    .login-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Reduce padding on links */
+    .links a {
+        padding: 15px 15px 15px 35px;
+    }
+
+    /* Adjust settings button */
+    #settings-btn {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjust login photo */
+    .login-photo {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* Adjust settings button position */
+    #settings-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 8px 15px;
+    }
+}

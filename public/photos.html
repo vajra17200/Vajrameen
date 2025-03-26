@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Photos Grid -->
+    <div id="photos-grid"></div>
+
+    <!-- Photo Modal -->
+    <div id="photo-modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
+    <!-- Form to Upload Photos -->
+    <form id="add-photo-form">
+        <input type="file" id="photo-file" accept="image/*" required>
+        <button type="submit">Add Photo</button>
+    </form>
+
+    <script src="photos.js"></script>
+</body>
+</html>

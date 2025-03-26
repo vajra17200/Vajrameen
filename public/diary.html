@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Diary</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        li{
+            list-style-type: none;
+            font-size: 40px;
+            background-color: rgb(231, 189, 144);
+            border-radius: 20px;
+            width: 70%;
+            padding: 20px;
+            margin:20px auto;
+            ;
+        }
+    </style>
+</head>
+<body>
+    <div class="diary-container" style="display: block;">
+        <h1 style="font-family: cursive;font-size: 60px;">Personal Diary</h1>
+        <div class="diary-content">
+            <label for="diary-date" style="font-size: 30px;">Date:</label>
+            <input type="date" id="diary-date" required style="font-size: 30px;">
+            <br>
+            <br>
+            <textarea id="diary-text" placeholder="Write your diary entry here..." style="border-radius: 20px; padding: 20px;height: 700px;font-size: 50px;"></textarea>
+            <button id="save-entry" style="width: 40%; height: 100px;font-size: 40px;border-radius: 20px;background-color: rgb(226, 152, 152);">Save Entry</button>
+        </div>
+        <br>
+        <div class="entry-dates" style="margin: 0px auto; font-size: 30px;width: 80%;">
+            <h2>Dates with Entries</h2>
+            <ul id="entry-dates"></ul>
+        </div>
+    </div>
+    <script src="diary.js"></script>
+</body>
+</html>
